@@ -1,0 +1,83 @@
+diff --git a/package.json b/package.json
+index d7b6a654a620e5cfd4b23659f7a4a84cb9fde142..0c4310e1f62015475c1d5d59b5345f1d8c9065a2 100644
+--- a/package.json
++++ b/package.json
+@@ -29,11 +29,11 @@
+   "nx-migrations": "./migrations.json",
+   "peerDependencies": {
+     "@nx/cypress": "^19.0.0",
+-    "@nx/devkit": "^19.0.0",
++    "@nx/devkit": "^21.0.0",
+     "@nx/js": "^19.0.0",
+     "@nx/playwright": "^19.0.0",
+     "astro": "^3.0.0 || ^4.0.0",
+-    "nx": "^19.0.0",
++    "nx": "^21.0.0",
+     "typescript": "^5.0.0"
+   },
+   "peerDependenciesMeta": {
+diff --git a/src/executors/build/executor.js b/src/executors/build/executor.js
+index 00a8b501d5a92b412145866144538a6f41fd8074..e975e3e34835254d628dbc58cf3cf1986e98df6c 100644
+--- a/src/executors/build/executor.js
++++ b/src/executors/build/executor.js
+@@ -10,7 +10,7 @@ let childProcess;
+ async function buildExecutor(options, context) {
+     var _a, _b;
+     options = normalizeOptions(options);
+-    const projectRoot = context.workspace.projects[context.projectName].root;
++    const projectRoot = context.projectsConfigurations.projects[context.projectName].root;
+     // TODO: use what's in the Astro config once the CLI API is available.
+     // See https://github.com/snowpackjs/astro/issues/1483.
+     let outputPath = `dist/${projectRoot}`;
+diff --git a/src/executors/check/executor.js b/src/executors/check/executor.js
+index f70a10294e1df2a8f096a5144f0b2e7949fe7af1..1e57c662ef438a04284c10b1c2e38daad731923c 100644
+--- a/src/executors/check/executor.js
++++ b/src/executors/check/executor.js
+@@ -6,7 +6,7 @@ const child_process_1 = require("child_process");
+ const astro_1 = require("../../utilities/astro");
+ let childProcess;
+ async function checkExecutor(_options, context) {
+-    const projectRoot = context.workspace.projects[context.projectName].root;
++    const projectRoot = context.projectsConfigurations.projects[context.projectName].root;
+     try {
+         const exitCode = await runCliCheck(context.root, projectRoot);
+         return { success: exitCode === 0 };
+diff --git a/src/executors/dev/executor.js b/src/executors/dev/executor.js
+index 1baf06b19fa7eb1d7c0789a6dde9083721de5173..1dfef2811e445f00345e151af57511ecc5be62d8 100644
+--- a/src/executors/dev/executor.js
++++ b/src/executors/dev/executor.js
+@@ -9,7 +9,7 @@ const astro_1 = require("../../utilities/astro");
+ let childProcess;
+ async function* devExecutor(options, context) {
+     var _a;
+-    const projectRoot = context.workspace.projects[context.projectName].root;
++    const projectRoot = context.projectsConfigurations.projects[context.projectName].root;
+     try {
+         const success = await runCliDev(context.root, projectRoot, options);
+         // TODO: build url from what's in the Astro config once the CLI API is available.
+diff --git a/src/executors/preview/executor.js b/src/executors/preview/executor.js
+index 1f6edb9a6d3ba28b1dab206433efd209699caf08..251264471cc97b29b427155a83d28eb36dba8907 100644
+--- a/src/executors/preview/executor.js
++++ b/src/executors/preview/executor.js
+@@ -9,7 +9,7 @@ const astro_1 = require("../../utilities/astro");
+ let childProcess;
+ async function* previewExecutor(options, context) {
+     var _a;
+-    const projectRoot = context.workspace.projects[context.projectName].root;
++    const projectRoot = context.projectsConfigurations.projects[context.projectName].root;
+     try {
+         const success = await runCliPreview(context.root, projectRoot, options);
+         // TODO: build url from what's in the Astro config once the CLI API is available.
+diff --git a/src/executors/sync/executor.js b/src/executors/sync/executor.js
+index e9c5acd8fae25cf50a8189805268f6ff6796e330..e66bdbf5f7c8be35ec158495a169618ef36612fe 100644
+--- a/src/executors/sync/executor.js
++++ b/src/executors/sync/executor.js
+@@ -6,7 +6,7 @@ const child_process_1 = require("child_process");
+ const astro_1 = require("../../utilities/astro");
+ let childProcess;
+ async function syncExecutor(_options, context) {
+-    const projectRoot = context.workspace.projects[context.projectName].root;
++    const projectRoot = context.projectsConfigurations.projects[context.projectName].root;
+     try {
+         const exitCode = await runCliSync(context.root, projectRoot);
+         return { success: exitCode === 0 };

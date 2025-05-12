@@ -1,0 +1,7 @@
+onlyBuiltDependencies:
+  - '@swc/core'
+  - esbuild
+  - nx
+  - sharp
+patchedDependencies:
+  '@nxtensions/astro@19.0.1': patches/@nxtensions__astro@19.0.1.patch
