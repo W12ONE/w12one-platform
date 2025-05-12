@@ -21,19 +21,18 @@ jobs:
           fetch-depth: 0
 
       # Cache node_modules
-      - name: Setup Node with pnpm caching
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+          run_install: false
+
+      - name: Install Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'pnpm'
+          cache: "pnpm"
 
-      
-      - name: Install pnpm 
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9.8.0
-          run_install: false
-      
       # This enables task distribution via Nx Cloud
       # Run this command as early as possible, before dependencies are installed
       # Learn more at https://nx.dev/ci/reference/nx-cloud-cli#npx-nxcloud-startcirun
