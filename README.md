@@ -1,76 +1,48 @@
 # W12onePlatform
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+This project is my hands-on DevOps lab — a place to build, break, and refine ideas while exploring the full lifecycle of delivering, debugging, and scaling modern software systems. This isn’t about building an app — it’s about building, breaking, and debugging the infrastructure and workflows behind apps.
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+Right now, the setup includes an Astro frontend and a Go API backend. That gives me a great base to experiment with containerization, CI/CD pipelines, observability, and infrastructure-as-code. The current stack is intentionally minimal — it's here to support workflows, not define them.
 
-Run `npx nx graph` to visually explore what got created. Now, let's get you up to speed!
+Later on, once I’ve built out the complete DevOps pipeline, this project will evolve into a personal dashboard or website that showcases both the tooling and infrastructure behind it.
 
-## Finish your CI setup
+🛠️ Current Stack
 
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/TAiRm0qJJg)
-
-
-## Run tasks
-
-To run tasks with Nx use:
-
-```sh
-npx nx <target> <project-name>
-```
-
-For example:
-
-```sh
-npx nx build myproject
-```
-
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
-
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Add new projects
-
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
-
-To install a new plugin you can use the `nx add` command. Here's an example of adding the React plugin:
-```sh
-npx nx add @nx/react
-```
-
-Use the plugin's generator to create new projects. For example, to create a new React app or library:
-
-```sh
-# Generate an app
-npx nx g @nx/react:app demo
-
-# Generate a library
-npx nx g @nx/react:lib some-lib
-```
-
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
-
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- Frontend: Astro
+- Backend: Go API (minimal)
+- Monorepo: Nx v21
+- Containerization: Docker (WIP)
+- CI/CD: GitHub Actions
+- Infra as Code: Terraform (WIP)
 
 
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+---
 
-## Install Nx Console
+## ⚠ Bleeding Edge Disclaimer
 
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
+This project is built on **Nx v21**, which — at the time of writing — means:
+- I’m ahead of many existing community plugins (most are still built for Nx v19 or older),
+- I had to patch and work around breaking changes (e.g. for `@nxtension/astro`), though, I'm thinkering with a more permanent plugin for my purposes.... and the rabbit hole runs far deeper than my quick patch ever intended to go,
+- I encountered what appears to be a bug in nx/plugin@21, where a plugin was incorrectly scaffolded into the project root instead of libs/ — though I haven’t yet fully confirmed whether it’s reproducible or covered by an existing issue,
+- And if it comes down to it, I’ll fork or rewrite missing integrations to make things work.
 
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+If something looks broken, it’s probably because I’m holding together bleeding-edge tech with a mix of duct tape, caffein, and sheer willpower.
 
-## Useful links
+---
 
-Learn more:
+> This project is an evolving proof of concept — optimized not for polish, but for growth.  
+> If you're from Shopify (or anyone hiring in DevOps, cloud, or platform roles): this is me learning in public and building the kind of tooling I’d want to deploy in production — just without the corporate firewall — and with more broken stuff to learn from. 🚀
 
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+> ### 🧠 What this teaches me so far
 
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- How to work around tooling friction in evolving ecosystems  
+- How CI/CD, IaC, and container orchestration fit together in practice  
+- Why platform engineers think in systems, not features
+
+🛠️ Still to come
+
+- Structured Terraform config for Azure deployment
+- Multi-service Docker setup with build + orchestration
+- DevEx enhancements (e.g., Nx plugin or workspace tooling)
+
+
