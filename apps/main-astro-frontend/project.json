@@ -21,6 +21,12 @@
     },
     "sync": {
       "executor": "@nxtensions/astro:sync"
+    },
+    "docker-build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "sh -c 'docker build -f apps/main-astro-frontend/Dockerfile -t w12oneplatform/main-astro-frontend:dev-$(git rev-parse --short HEAD) .'"
+      }
     }
   },
   "tags": []
